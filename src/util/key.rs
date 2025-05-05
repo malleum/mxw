@@ -48,9 +48,7 @@ impl TryInto<Key> for Option<&RawKey> {
 
     fn try_into(self) -> Result<Key, Self::Error> {
         if let Some(v) = self {
-            if v.modifier.is_some() {
-                return Ok(Key::from(v));
-            }
+            return Ok(Key::from(v));  // Remove the modifier check
         }
 
         Err(anyhow!("key code is invalid"))
